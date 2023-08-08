@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+
+    <div id="App" class="text-center">
+        <button class="btn btn-success" @click="showMe = !showMe">Go</button>
+        <transition>
+            <h2 v-if="showMe">Animate Me</h2>
+        </transition>
+    </div>
+
+    <!-- <div id="App" class="text-center"> 
+        <button class="btn btn-success" @click="showMe = !showMe">Go</button>
+      <transition 
+        enter-active-class="animate__animated animate__flipInY"
+        leave-active-class="animate__animated animate__rotateOut">
+        <h2 v-if="showMe">Animate Me</h2> 
+      </transition>
+      </div> -->
+
+    <!-- <div id="App" class="text-center">
+        <button class="btn" :class="btnColor" @click="showMe = !showMe">Go</button>
+        <transition enter-active-class="animate__animated animate__flipInY"
+            leave-active-class="animate__animated animate__rotateOut" @enter="transitionColor"
+            @enter-cancelled="successColor" @after-enter="successColor" @leave="transitionColor"
+            @after-leave="resetColor">
+            <h2 v-if="showMe">Animate Me</h2>
+        </transition>
+    </div> -->
+
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+    <script>
+        // const App = {
+        //     data() {
+        //         return {
+        //             showMe: false,
+        //         }
+        //     }
+        // }
+        // Vue.createApp(App).mount('#App')
+
+
+        const App = {
+            data() {
+                return {
+                    showMe: false,
+                    btnColor: 'btn-secondary',
+                    nextThing: true,
+                }
+            },
+            methods: {
+                transitionColor(el) {
+                    this.btnColor = 'btn-warning';
+                    console.log(el)
+                },
+                activeColor() {
+                    this.btnColor = 'btn-secondary';
+                },
+                successColor() {
+                    this.btnColor = 'btn-success';
+                },
+                resetColor() {
+                    this.btnColor = 'btn-secondary';
+                }
+            }
+        }
+        Vue.createApp(App).mount('#App')
+
+
+
+
+
+    </script>
+</body>
+
+</html>

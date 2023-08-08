@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{name}}</h2>
+        <div>
+            <button v-on:mouseover="changeName($event), increment(1,$event)"> Change name</button>
+
+            <!-- after : we call event -->
+
+            <h2>{{count}}</h2>
+            <button @click="increment(1, $event)">Increment</button>
+            <button @click="increment(5)">Increment by 5</button>
+            <button @click="decrememt(1)">Decrement</button>
+            <button @click="decrememt(5)">Decrement by 5</button>
+            <!-- this logic for many events handler is complex , so keeping value there directly is not feasible-->
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+
+    <script>
+        const app = {
+            data() {
+                return {
+                    name: "Pratiksha",
+                    count: 0
+                }
+            },
+            methods: {
+                changeName(event){
+                    this.name = "Rekha"
+                    console.log('Event', event)
+                },
+                increment(num) {
+                    this.count += num,
+                    console.log('Event', event)
+                },
+                decrememt(num) {
+                    this.count -= num,
+                    console.log('Event', event)
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app');
+    </script>
+</body>
+
+</html>

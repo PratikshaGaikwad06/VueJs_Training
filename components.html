@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Inline Styles Example</title>
+</head>
+
+<body>
+
+    <!-- <div id="App">
+        <btn></btn>
+    </div> -->
+
+    <div id="App">
+
+        <h1>{{name}}</h1>
+        <btn label="Add" type="danger" myprop="">Hello</btn>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+    <script>
+        // const App = Vue.createApp({})
+
+        const App = Vue.createApp({
+
+            data(){
+                return {
+                    name : "Hello World"
+                }
+            }
+        })
+
+        App.component('btn', {
+            props: ['label', 'type', 'myprop'],
+            template: `
+                <button :class="['btn', 'btn-' + (type || 'secondary')]">
+                {{label}}
+                </button>`
+        })
+
+        // App.mount('#App')
+
+        //         App.component('myComponent', {
+        //             props: ['myProp'],
+        //             template: ``
+        //         })
+
+        App.mount('#App')
+
+    </script>
+</body>
+
+</html>

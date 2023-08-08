@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{ sum }}</div>
+        <div>{{ sum }}</div>
+        <div>{{ sum }}</div>
+
+        
+
+        <div>{{ reverseMessage() }}</div>
+        <div>{{ reverseMessage() }}</div>
+        <div>{{ reverseMessage() }}</div>
+
+        <div>{{ reversedMsgComputed }}</div>
+        <div>{{ reversedMsgComputed }}</div>
+        <div>{{ reversedMsgComputed }}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+
+    <script>
+        
+        const app = createApp({
+            data() {
+                return {
+                    msg: 'Hello',
+                    num: 100
+                };
+            },
+            computed: {
+                reversedMsgComputed() {
+                    console.log("This is from a computed property");
+
+                    return this.msg = this.msg.split("").reverse().join('');
+                },
+                sum() {
+                    console.log("This is from a computed");
+                    let total = 0;
+                    for (let i = 0; i <= this.num; i++) {
+                        total += i;
+                    }
+                    return total;
+                }
+            },
+            methods: {
+                reverseMessage() {
+                    console.log("This is from a method call");
+                    return this.msg = this.msg.split("").reverse().join('')
+                }
+            },
+            
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

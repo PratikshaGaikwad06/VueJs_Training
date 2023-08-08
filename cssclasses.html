@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Class and Style Binding Example</title>
+</head>
+
+<body>
+    <div id="app">
+        <div :class="myObject">Computed Properties</div>
+
+        <div :class="[classVarA, myVar > 50 ? 'badge-primary':'badge-secondary']">Hello world</div>
+
+        <div class="myClass" :class="{ 'class-a': boolA, 'class-b': boolB }">hello</div>
+
+        <div class="myClass" :class="myObject">heyy</div>
+        <!-- Class Binding Example -->
+        <div :class="classObject">This is a div with class binding.</div>
+
+        <!-- Dynamic Style Binding Example -->
+        <div :style="styleObject">This is a div with dynamic style binding.</div>
+
+        <button @click="toggleClassAndStyle">Toggle Class and Style</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    classVarA: 'lead',
+                    classVarB: 'badge-primary',
+                    myBool: true,
+                    myVar: 30,
+                    
+                    myToggle: true,
+                    myBool: false,
+                    myVar: null,
+                    boolA: true,
+                    boolB: true,
+                    myObject: {
+                        'class-a': true,
+                        classB: true
+                    },
+                    isActive: false,
+                    classObject: {
+                        active: this.isActive,
+                        'text-success': true
+                    },
+                    styleObject: {
+                        color: this.isActive ? 'green' : 'red',
+                        fontSize: '16px'
+                    }
+                };
+            },
+            computed: {
+                myObject() {
+                    return {
+                        active: this.myToggle && !this.myBool,
+                        'other-class': myVar >= 50
+                    }
+                }
+            },
+            methods: {
+                toggleClassAndStyle() {
+                    this.isActive = !this.isActive;
+                    this.classObject.active = this.isActive;
+                    this.styleObject.color = this.isActive ? 'green' : 'red';
+                }
+            }
+        });
+
+        app.mount('#app');
+
+    </script>
+</body>
+
+</html>

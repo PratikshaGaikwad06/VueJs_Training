@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Inline Styles Example</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>Object syntax</h2>
+        <p :style="paragraphStyles">This is a paragraph with inline styles.</p>
+        <button @click="changeStyles">Change Styles</button>
+
+        <div :style="[stylesA, stylesB]">Array Syntax</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    stylesA: {
+                        color: 'blue',
+                        backgroundColor: 'yellow'
+                    },
+                    stylesB: {
+                        fontWeight: 100,
+                        fontSize: '5em'
+                    },
+                    paragraphStyles: {
+                        color: 'blue',
+                        fontSize: '16px',
+                        fontWeight: 'bold'
+                    }
+                };
+            },
+            methods: {
+                changeStyles() {
+                    this.paragraphStyles.color = 'green';
+                    this.paragraphStyles.fontSize = '20px';
+                    this.paragraphStyles.fontWeight = 'normal';
+                }
+            }
+        });
+
+        app.mount('#app');
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 
+    Lifecycle hooks
+    4 phases
+    1.creation, 2.mounting, 3.updating, 4.unmounting 
+lifecycle hooks are methods that allow us to hook into or tap into these different phases in the lifeccycle 
+of a component and execute some code
+Creation: This is the stage when a component is being created but not yet inserted into the DOM. 
+It involves initializing the component's data and props.
+
+Mounting: During this stage, the component is being added 
+to the DOM for the first time. This is where you might want
+ to perform actions that need access to the DOM.
+
+Updating: When the component's data changes, 
+the updating stage occurs. This is where you can react 
+to changes in data or props and make adjustments accordingly.
+
+Unmounting: When a component is removed from the DOM,
+ the unmounting stage happens. This is where you can 
+ perform cleanup tasks, such as canceling timers or removing event listeners, 
+ to prevent memory leaks.
+
+creation => beforeCreate(), created()
+mounting = > beforMount(), mounted()
+updating, unmounting
+-->
+
+
+
+    <div id="app">
+        <button @click="updateMessage">Update Message</button>
+        <p>{{ message }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+    data() {
+        return {
+            message: 'Hello, Vue3!'
+        }
+    },
+    methods: {
+        updateMessage() {
+            this.message = 'Updated Message';
+        }
+    },
+    beforeCreate() {
+        console.log('Before create hook');
+    },
+    created() {
+        console.log('Created hook');
+    },
+    beforeMount() {
+        console.log('Before mount hook');
+    },
+    mounted() {
+        console.log('Mounted hook');
+    },
+    beforeUpdate() {
+        console.log('Before update hook');
+    },
+    updated() {
+        console.log('Updated hook');
+    },
+    beforeUnmount() {
+        console.log('Before unmount hook');
+    },
+    unmounted() {
+        console.log('Unmounted hook');
+    }
+});
+
+app.mount('#app');
+
+    </script>
+</body>
+
+</html>
